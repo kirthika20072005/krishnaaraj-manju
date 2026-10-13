@@ -1,0 +1,194 @@
+.gift__stage {
+  display: flex;
+  justify-content: center;
+  margin: clamp(1.2rem, 3vw, 2rem) 0;
+}
+
+.giftbox {
+  position: relative;
+  width: 250px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.giftbox__glow {
+  position: absolute;
+  top: 20%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 168, 153, 0.35), transparent 65%);
+  filter: blur(6px);
+  z-index: 0;
+  animation: pulseGlow 4.5s var(--ease-in-out) infinite;
+}
+
+.giftbox__body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.5s var(--ease-soft);
+}
+.giftbox:not(.is-open) .giftbox__body:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+.giftbox.is-open .giftbox__body {
+  transform: translateY(-6px);
+  cursor: default;
+}
+
+.giftbox__box {
+  position: relative;
+  width: 196px;
+  height: 132px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #7a2138, #4a0e22 60%, #360d1e);
+  border: 1px solid rgba(212, 175, 122, 0.45);
+  box-shadow: 0 22px 40px -18px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.giftbox__ribbon-v {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--champagne), var(--champagne-light), var(--champagne));
+  opacity: 0.9;
+}
+.giftbox__ribbon-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 26px;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, var(--champagne-light), var(--champagne));
+  opacity: 0.9;
+}
+
+.giftbox__lid {
+  position: relative;
+  z-index: 3;
+  width: 214px;
+  height: 50px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #8a2a45, #5d1730);
+  border: 1px solid rgba(212, 175, 122, 0.5);
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.7);
+  transition: transform 0.7s var(--ease-soft);
+  margin-bottom: -10px;
+}
+.giftbox__lid::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--champagne), var(--champagne-light), var(--champagne));
+  opacity: 0.9;
+}
+.giftbox.is-open .giftbox__lid {
+  transform: translateY(-70px) rotate(-14deg);
+}
+
+.giftbox__bow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+}
+.giftbox__bow::before,
+.giftbox__bow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border: 6px solid var(--champagne-light);
+  border-radius: 50% 50% 0 50%;
+  transform-origin: 100% 50%;
+}
+.giftbox__bow::before {
+  left: 0;
+  transform: rotate(20deg);
+}
+.giftbox__bow::after {
+  right: 0;
+  border-radius: 50% 50% 50% 0;
+  transform-origin: 0 50%;
+  transform: rotate(-20deg);
+}
+
+.giftbox__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(246, 233, 228, 0.8);
+  animation: floatY 2.8s var(--ease-in-out) infinite;
+}
+
+.giftbox__confetti {
+  position: absolute;
+  inset: -40% -20% 0 -20%;
+  z-index: 5;
+  pointer-events: none;
+  overflow: visible;
+}
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  animation-name: confettiFall;
+  animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1);
+  animation-fill-mode: forwards;
+}
+
+.giftbox__reveal {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  animation: fadeUp 0.7s var(--ease-soft) both;
+}
+.giftbox__reveal-icon {
+  color: var(--champagne-light);
+}
+.giftbox__reveal-title {
+  font-size: 2rem;
+  color: var(--cream);
+}
+.giftbox__reveal-text {
+  max-width: 460px;
+  color: rgba(246, 233, 228, 0.9);
+}
+
+.gift__again {
+  margin-top: 1.4rem;
+}
+.gift__ps {
+  margin-top: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+}

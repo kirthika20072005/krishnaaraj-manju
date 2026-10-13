@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.local
+*.log
+npm-debug.log*
+
+# Personal media that you may not want to push to a public repo.
+# (Comment these out if you DO want your photos in the repo.)
+# public/media/images/ours
+# public/media/video/*
+# public/media/music/*

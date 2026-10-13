@@ -1,0 +1,148 @@
+.bucket__meter {
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+.bucket__bar {
+  height: 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 122, 0.3);
+}
+.bucket__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--rose-gold), var(--champagne-light));
+  transition: width 0.6s var(--ease-soft);
+}
+.bucket__count {
+  margin-top: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 212, 205, 0.85);
+}
+
+.bucket__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1.8rem;
+}
+
+.bucket__item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 175, 122, 0.22);
+  color: var(--cream);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s var(--ease-soft);
+}
+.bucket__item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+.bucket__item.is-done {
+  background: rgba(212, 175, 122, 0.14);
+  border-color: rgba(212, 175, 122, 0.5);
+}
+.bucket__item.is-done .bucket__text {
+  text-decoration: line-through;
+  text-decoration-color: rgba(244, 212, 205, 0.6);
+  color: rgba(246, 233, 228, 0.62);
+}
+
+.bucket__check {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--champagne-light);
+  color: var(--midnight);
+  background: transparent;
+  transition: background 0.3s ease, transform 0.3s var(--ease-soft);
+}
+.bucket__check:hover {
+  transform: scale(1.08);
+}
+.is-done .bucket__check {
+  background: var(--champagne-light);
+}
+.bucket__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 122, 0.5);
+}
+
+.bucket__emoji {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.bucket__text {
+  flex: 1;
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+
+.bucket__remove {
+  color: rgba(244, 212, 205, 0.5);
+  display: grid;
+  place-items: center;
+  padding: 0.2rem;
+  border-radius: 6px;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+.bucket__remove:hover {
+  color: #ffb4b4;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.bucket__add {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.bucket__input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(212, 175, 122, 0.4);
+  background: rgba(26, 5, 16, 0.5);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+}
+.bucket__input::placeholder {
+  color: rgba(244, 212, 205, 0.45);
+}
+.bucket__input:focus {
+  outline: none;
+  border-color: var(--champagne);
+  background: rgba(26, 5, 16, 0.7);
+}
+.bucket__add-btn {
+  flex-shrink: 0;
+}
+.bucket__add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .bucket__add {
+    flex-direction: column;
+  }
+}

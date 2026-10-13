@@ -1,0 +1,60 @@
+.music-control {
+  position: fixed;
+  left: clamp(0.8rem, 2vw, 1.6rem);
+  bottom: clamp(0.8rem, 2vw, 1.6rem);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  border-radius: 100px;
+  background: rgba(26, 5, 16, 0.55);
+  border: 1px solid var(--gold-line);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+}
+
+.music-control__btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--champagne-light);
+  background: radial-gradient(circle at 30% 25%, rgba(224, 168, 153, 0.35), rgba(74, 14, 34, 0.7));
+  transition: transform 0.35s var(--ease-soft), color 0.3s ease;
+}
+.music-control__btn:hover {
+  transform: scale(1.06);
+  color: #fff;
+}
+
+.music-control__ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  opacity: 0;
+}
+.music-control__btn.is-playing .music-control__ring {
+  opacity: 1;
+  animation: pulseGlow 2.6s var(--ease-in-out) infinite;
+}
+
+.music-control__label {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 233, 228, 0.78);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .music-control__label {
+    display: none;
+  }
+  .music-control {
+    padding: 0.35rem;
+  }
+}

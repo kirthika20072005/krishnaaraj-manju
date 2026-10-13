@@ -1,0 +1,138 @@
+.finale {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(74, 14, 34, 0.55), transparent 60%),
+    linear-gradient(180deg, var(--plum), var(--midnight));
+}
+
+.finale__hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.finale__heart {
+  position: absolute;
+  bottom: -8%;
+  color: rgba(183, 110, 121, 0.35);
+  animation: riseHeart linear infinite;
+}
+.finale__heart:nth-child(1) { left: 8%; animation-duration: 15s; animation-delay: 0s; }
+.finale__heart:nth-child(2) { left: 22%; animation-duration: 19s; animation-delay: 3s; }
+.finale__heart:nth-child(3) { left: 38%; animation-duration: 13s; animation-delay: 6s; }
+.finale__heart:nth-child(4) { left: 52%; animation-duration: 21s; animation-delay: 1s; }
+.finale__heart:nth-child(5) { left: 68%; animation-duration: 16s; animation-delay: 8s; }
+.finale__heart:nth-child(6) { left: 80%; animation-duration: 18s; animation-delay: 4s; }
+.finale__heart:nth-child(7) { left: 92%; animation-duration: 14s; animation-delay: 10s; }
+
+.finale .container-narrow {
+  position: relative;
+  z-index: 1;
+}
+
+.finale__photo-frame {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto 2.4rem;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 122, 0.4);
+  box-shadow: 0 40px 70px -35px rgba(0, 0, 0, 0.85);
+}
+.finale__photo-frame.is-missing {
+  display: none;
+}
+.finale__photo {
+  display: block;
+  max-width: min(440px, 78vw);
+  max-height: 58vh;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.finale__photo-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 168, 153, 0.28), transparent 65%);
+  z-index: -1;
+  filter: blur(10px);
+}
+
+.finale__lines {
+  max-width: 640px;
+  margin: 0 auto 2.2rem;
+}
+.finale__line {
+  color: rgba(246, 233, 228, 0.92);
+  margin-bottom: 1rem;
+}
+
+.finale__closing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--champagne-light);
+  margin-bottom: 2.4rem;
+}
+.finale__closing-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.finale__remember {
+  max-width: 620px;
+  margin: 0 auto 2.4rem;
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  text-align: center;
+}
+.finale__remember-lead {
+  font-size: 0.86rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 212, 205, 0.75);
+  margin-bottom: 1rem;
+}
+.finale__remember-big {
+  font-size: clamp(1.5rem, 4.4vw, 2.2rem);
+  line-height: 1.35;
+  color: var(--cream);
+}
+
+.finale__sign {
+  margin-bottom: 2.4rem;
+}
+.finale__sign-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: rgba(244, 212, 205, 0.8);
+}
+.finale__sign-name {
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  color: var(--rose-gold);
+  margin-top: 0.4rem;
+}
+
+.finale__actions {
+  margin-bottom: 1.6rem;
+}
+.finale__replay {
+  background: linear-gradient(140deg, var(--rose-gold), #9a5560);
+  color: #fff;
+}
+.finale__replay:hover {
+  color: #fff;
+}
+
+.finale__made {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}

@@ -1,0 +1,108 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: calc(var(--nav-h) + 3rem) 5rem;
+  overflow: hidden;
+}
+
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(700px 460px at 50% 18%, rgba(224, 168, 153, 0.16), transparent 65%),
+    radial-gradient(600px 500px at 82% 80%, rgba(201, 184, 219, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.hero__name {
+  margin-top: 0.2rem;
+  text-shadow: 0 20px 60px rgba(224, 168, 153, 0.25);
+}
+
+.hero__ornament {
+  color: var(--gold-line);
+}
+
+.hero__message {
+  max-width: 640px;
+  color: #fbece6;
+}
+.hero__subline {
+  max-width: 560px;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+}
+
+.hero__constellation {
+  width: clamp(150px, 30vw, 210px);
+  margin: 0.4rem auto 0.2rem;
+}
+.constellation {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(224, 168, 153, 0.4));
+  animation: floatSlow 8s var(--ease-in-out) infinite;
+}
+.constellation__star {
+  animation: twinkle 3.4s var(--ease-in-out) infinite;
+}
+
+.hero__timer {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  color: var(--blush-soft);
+}
+.hero__us {
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+}
+.hero__us strong {
+  color: var(--champagne-light);
+  font-weight: 600;
+}
+
+.hero__cta {
+  margin-top: 0.9rem;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  color: rgba(246, 233, 228, 0.6);
+  font-size: 0.66rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  animation: floatY 3.4s var(--ease-in-out) infinite;
+}
+.hero__scroll:hover {
+  color: var(--champagne-light);
+}

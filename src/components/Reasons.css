@@ -1,0 +1,90 @@
+.reasons__spotlight-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.reasons__spotlight {
+  min-height: 3.4rem;
+  max-width: 620px;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
+}
+.reasons__spotlight.is-shown {
+  opacity: 1;
+  transform: none;
+}
+.reasons__spotlight-text {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--burgundy);
+  text-align: center;
+  animation: fadeUp 0.5s var(--ease-soft);
+}
+.reasons__spotlight-text svg {
+  margin-top: 0.35rem;
+  color: var(--rose-gold);
+  flex-shrink: 0;
+}
+
+.reasons__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.reason {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(212, 175, 122, 0.32);
+  box-shadow: 0 10px 24px -18px rgba(74, 14, 34, 0.5);
+  transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
+}
+.reason:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 34px -18px rgba(74, 14, 34, 0.5);
+}
+
+.reason__num {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--rose-gold);
+  line-height: 1.2;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.reason__text {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.reason__heart {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.7rem;
+  color: rgba(183, 110, 121, 0.4);
+  transition: color 0.4s ease, transform 0.4s var(--ease-soft);
+}
+.reason:hover .reason__heart {
+  color: var(--rose-gold);
+  transform: scale(1.2);
+}
+
+.reasons__foot {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  color: var(--burgundy);
+}
