@@ -140,11 +140,18 @@
   box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
   text-align: center;
   border: 1px solid rgba(212, 175, 122, 0.5);
-  max-height: 34vh;
-  overflow-y: auto;
+  /* Tucked away while sealed: short enough to sit fully inside the
+     envelope on any viewport, then grows as it slides out. */
+  max-height: 64px;
+  overflow: hidden;
+  transition: max-height 0.8s var(--ease-soft) 0.45s;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--rose-gold) transparent;
+}
+.envelope.is-open .envelope__letter-inner {
+  max-height: 34vh;
+  overflow-y: auto;
 }
 .envelope .envelope__letter-inner::-webkit-scrollbar {
   width: 6px;

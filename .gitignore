@@ -26,3 +26,4 @@ npm-debug.log*
 # public/media/music/*
 
 # Playwright MCP traces
+.playwright-mcp/
