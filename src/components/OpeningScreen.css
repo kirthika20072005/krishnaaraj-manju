@@ -3,7 +3,11 @@
   inset: 0;
   z-index: 100;
   display: grid;
-  place-items: center;
+  justify-items: center;
+  /* Start-aligned (not centered) so a taller-than-screen stack pins to the
+     top and scrolls instead of clipping — margin: auto on the content
+     still centers it vertically whenever it fits. */
+  align-items: start;
   overflow-x: hidden;
   overflow-y: auto;
   background:
@@ -99,6 +103,7 @@
   margin: 0.4rem 0;
   filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.5));
   transition: transform 0.8s var(--ease-soft) 0.1s;
+  will-change: transform;
 }
 .envelope.is-open {
   /* Settle down so the rising letter has headroom and never clips the top. */
@@ -121,13 +126,18 @@
   bottom: 8%;
   z-index: 2;
   transform: translateY(6%) scale(0.96);
-  /* Rises only after the flap has swung open, like a letter sliding out. */
+  /* Sealed: only the bottom strip shows, tucked behind the front face.
+     Revealed with clip-path (no layout work) so the opening stays smooth. */
+  clip-path: inset(calc(100% - 64px) 0 0 0 round 8px);
   transition:
-    transform 1s var(--ease-soft) 0.45s,
+    transform 1s var(--ease-soft) 0.4s,
+    clip-path 0.9s var(--ease-soft) 0.4s,
     z-index 0s linear 0.7s;
+  will-change: transform, clip-path;
 }
 .envelope.is-open .envelope__letter {
   transform: translateY(-33%) scale(1);
+  clip-path: inset(0 0 0 0 round 8px);
   z-index: 4;
 }
 
@@ -140,17 +150,15 @@
   box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
   text-align: center;
   border: 1px solid rgba(212, 175, 122, 0.5);
-  /* Tucked away while sealed: short enough to sit fully inside the
-     envelope on any viewport, then grows as it slides out. */
-  max-height: 64px;
-  overflow: hidden;
-  transition: max-height 0.8s var(--ease-soft) 0.45s;
+  /* Functional cap only — the reveal itself is handled by the wrapper's
+     clip-path so no layout animates during opening. */
+  max-height: 34vh;
+  overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--rose-gold) transparent;
 }
 .envelope.is-open .envelope__letter-inner {
-  max-height: 34vh;
   overflow-y: auto;
 }
 .envelope .envelope__letter-inner::-webkit-scrollbar {
@@ -209,11 +217,12 @@
   transform-origin: top center;
   /* Swings open right after the seal breaks, then drops behind the letter. */
   transition:
-    transform 0.7s var(--ease-soft) 0.15s,
-    z-index 0s linear 0.6s;
+    transform 0.8s var(--ease-soft) 0.15s,
+    z-index 0s linear 0.65s;
   z-index: 5;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  will-change: transform;
 }
 .envelope.is-open .envelope__flap {
   transform: rotateX(178deg);
@@ -250,5 +259,37 @@
 @media (max-width: 420px) {
   .envelope__letter-inner {
     padding: 0.9rem 1rem;
+  }
+}
+
+/* Short screens (landscape phones, short windows): compact the stack so the
+   envelope, letter and buttons fit without scrolling. */
+@media (max-height: 560px) {
+  .opening__content {
+    gap: 0.7rem;
+    padding: 1rem;
+  }
+  .envelope {
+    --w: clamp(220px, 52vh, 300px);
+    margin: 0;
+  }
+  .envelope .envelope__letter-inner {
+    max-height: 30vh;
+    padding: 0.8rem 1rem;
+  }
+  .opening__footer {
+    display: none;
+  }
+}
+
+/* Narrow phones: full-width tap target, tighter type. */
+@media (max-width: 380px) {
+  .opening__content {
+    gap: 1rem;
+    padding: 1.5rem 0.75rem;
+  }
+  .opening__btn {
+    width: 100%;
+    max-width: 300px;
   }
 }
