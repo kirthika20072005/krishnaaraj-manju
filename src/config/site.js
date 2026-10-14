@@ -8,11 +8,11 @@
 export const site = {
   /* ---------------------------------------------------------------- NAMES */
   // His name — shown all over the site.
-  hisName: 'My Love',
+  hisName: 'Krishnaaraj',
   // A short nickname / pet name (optional). Used for the opening screen.
-  hisNickname: 'my favorite person',
+  hisNickname: 'Krishnaaa',
   // Your name — used in signatures and the certificate.
-  myName: 'Me',
+  myName: 'Manju',
 
   // Shown as the browser tab title.
   siteTitle: 'A Little Universe, Made Just for You',
@@ -40,7 +40,8 @@ export const site = {
     // The birthday message.
     message: 'Happy Birthday to the boy who became my favorite part of every day.',
     // A softer sub-line.
-    subline: 'This is a tiny universe I made for you. Take your time. Look around. It is all yours.',
+    subline:
+      'This is a tiny universe I made for you. Take your time. Look around. It is all yours.',
     // Button that scrolls to the story.
     cta: 'Begin Our Story',
   },
@@ -71,10 +72,16 @@ export const site = {
     title: 'Us, in Motion',
     // Put your edited video in:  public/media/video/our-movie.mp4
     // Then this path is enough (do NOT write /public).
+    // DEPLOY NOTE (Vercel): git/GHub rejects files >100MB and Vercel is slow
+    // with huge MP4s. Your current file is ~177MB, so it never reached Vercel.
+    // Compress to <30MB with faststart (see below), or host externally and
+    // put the https URL here, e.g. src: 'https://.../our-movie.mp4'.
+    // ffmpeg: ffmpeg -i our-movie.mp4 -vcodec libx264 -crf 23 -preset medium
+    //   -acodec aac -b:a 128k -movflags +faststart -vf scale=-2:720 our-movie-small.mp4
     src: '/media/video/our-movie.mp4',
-    // A poster image shown before playing.
-    // Put it in: public/media/video/our-movie-poster.jpg  (a .svg placeholder
-    // is provided; swap this line when you add your own poster).
+    // A poster image shown before playing. Optional — set to null to skip.
+    // Put it in: public/media/video/our-movie-poster.jpg
+    // (missing poster no longer breaks the player; it is hidden gracefully).
     poster: '/media/video/our-movie-poster.svg',
     // Intro shown before the video plays.
     intro:
@@ -144,7 +151,8 @@ export const site = {
 
   /* ----------------------------------------------------------- FINAL */
   final: {
-    photo: '/media/images/ours/final-us.svg?debug='+Date.now(),
+    // A real photo from the gallery. Keep it under public/media/images/ours/.
+    photo: '/media/images/ours/photo-19.jpg',
     lines: [
       'If I could choose a thousand times, I would still want to know you, laugh with you, grow with you, and make memories with you.',
       'Thank you for being part of my story.',

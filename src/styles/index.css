@@ -40,7 +40,9 @@
   --font-display: 'Playfair Display', 'Noto Serif Tamil', Georgia, 'Times New Roman', serif;
   --font-hand: 'Dancing Script', 'Great Vibes', 'Noto Sans Tamil', cursive;
   --font-sign: 'Great Vibes', 'Dancing Script', 'Noto Serif Tamil', cursive;
-  --font-sans: 'Jost', 'Noto Sans Tamil', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-sans:
+    'Jost', 'Noto Sans Tamil', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
 
   /* Spacing / layout */
   --maxw: 1180px;
@@ -266,8 +268,7 @@ h4 {
 /* ---------------------------------------------------------- Backgrounds */
 .bg-cream {
   background:
-    linear-gradient(180deg, rgba(253, 249, 243, 0.98), rgba(248, 238, 229, 0.98)),
-    var(--paper);
+    linear-gradient(180deg, rgba(253, 249, 243, 0.98), rgba(248, 238, 229, 0.98)), var(--paper);
   color: var(--ink);
 }
 .bg-cream .eyebrow {
@@ -289,8 +290,12 @@ h4 {
   background-image:
     radial-gradient(rgba(120, 80, 60, 0.05) 1px, transparent 1px),
     radial-gradient(rgba(120, 80, 60, 0.04) 1px, transparent 1px);
-  background-size: 18px 18px, 26px 26px;
-  background-position: 0 0, 9px 13px;
+  background-size:
+    18px 18px,
+    26px 26px;
+  background-position:
+    0 0,
+    9px 13px;
 }
 
 /* ------------------------------------------------------------ Ornaments */
@@ -328,7 +333,12 @@ h4 {
 }
 
 .rose-text {
-  background: linear-gradient(120deg, var(--blush-soft), var(--rose-gold-light) 50%, var(--rose-gold));
+  background: linear-gradient(
+    120deg,
+    var(--blush-soft),
+    var(--rose-gold-light) 50%,
+    var(--rose-gold)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -352,7 +362,9 @@ h4 {
   color: var(--btn-fg);
   background: var(--btn-bg);
   box-shadow: 0 14px 30px -14px rgba(183, 110, 121, 0.8);
-  transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft),
+  transition:
+    transform 0.4s var(--ease-soft),
+    box-shadow 0.4s var(--ease-soft),
     filter 0.3s ease;
   overflow: hidden;
   isolation: isolate;
@@ -411,7 +423,9 @@ h4 {
   font-size: 0.9rem;
   color: var(--champagne-light);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 .btn-link:hover {
   border-color: var(--gold-line);
@@ -427,7 +441,9 @@ h4 {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft);
   transition-delay: var(--reveal-delay, 0s);
   will-change: opacity, transform;
 }
@@ -440,6 +456,22 @@ h4 {
 }
 .reveal-right {
   transform: translateX(34px);
+}
+
+/* Pop-in variant: cards appear all of a sudden while scrolling,
+   scaling up from 0.7 with a quick fade (no theme change).
+   Keeps each card's scrapbook tilt via --tilt. */
+.reveal.reveal-pop {
+  opacity: 0;
+  transform: rotate(var(--tilt, 0deg)) scale(0.7);
+  transition:
+    opacity 0.35s ease-in-out,
+    transform 0.35s ease-in-out;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.reveal-pop.is-visible {
+  opacity: 1;
+  transform: rotate(var(--tilt, 0deg)) scale(1);
 }
 
 /* ----------------------------------------------------------- Glass card */
@@ -580,6 +612,11 @@ h4 {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .reveal.reveal-pop,
+  .reveal.reveal-pop.is-visible {
+    opacity: 1;
+    transform: rotate(var(--tilt, 0deg)) scale(1);
   }
 }
 

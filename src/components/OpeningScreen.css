@@ -4,12 +4,15 @@
   z-index: 100;
   display: grid;
   place-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background:
     radial-gradient(1000px 700px at 50% 12%, rgba(140, 45, 74, 0.5), transparent 60%),
     radial-gradient(800px 600px at 20% 90%, rgba(58, 24, 60, 0.55), transparent 65%),
     linear-gradient(180deg, var(--midnight), var(--burgundy) 60%, var(--plum));
-  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft);
 }
 .opening.is-leaving {
   opacity: 0;
@@ -32,6 +35,7 @@
   position: relative;
   z-index: 2;
   width: min(680px, 92vw);
+  margin: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -94,6 +98,11 @@
   perspective: 1200px;
   margin: 0.4rem 0;
   filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.5));
+  transition: transform 0.8s var(--ease-soft) 0.1s;
+}
+.envelope.is-open {
+  /* Settle down so the rising letter has headroom and never clips the top. */
+  transform: translateY(44px);
 }
 
 .envelope__back {
@@ -111,22 +120,43 @@
   right: 5%;
   bottom: 8%;
   z-index: 2;
-  transform: translateY(6%);
-  transition: transform 1s var(--ease-soft);
+  transform: translateY(6%) scale(0.96);
+  /* Rises only after the flap has swung open, like a letter sliding out. */
+  transition:
+    transform 1s var(--ease-soft) 0.45s,
+    z-index 0s linear 0.7s;
 }
 .envelope.is-open .envelope__letter {
-  transform: translateY(-62%);
+  transform: translateY(-33%) scale(1);
   z-index: 4;
 }
 
-.envelope__letter-inner {
+.envelope .envelope__letter-inner {
   border-radius: 8px;
-  background: linear-gradient(180deg, #fdf8f0, #f3e6d6);
+  background-color: #f9efe0;
+  background-image: linear-gradient(180deg, #fdf8f0, #f3e6d6);
   color: var(--ink);
   padding: clamp(1rem, 3.5vw, 1.6rem) clamp(1rem, 4vw, 1.8rem);
   box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
   text-align: center;
   border: 1px solid rgba(212, 175, 122, 0.5);
+  max-height: 34vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rose-gold) transparent;
+}
+.envelope .envelope__letter-inner::-webkit-scrollbar {
+  width: 6px;
+}
+.envelope .envelope__letter-inner::-webkit-scrollbar-track {
+  background: transparent;
+  border: none;
+}
+.envelope .envelope__letter-inner::-webkit-scrollbar-thumb {
+  background: var(--rose-gold);
+  border-radius: 20px;
+  border: none;
 }
 .envelope__letter-heart {
   color: var(--rose-gold);
@@ -135,20 +165,19 @@
 .envelope__birthday {
   font-size: clamp(1.3rem, 4.4vw, 1.7rem);
   line-height: 1.35;
-  color: #fff;
+  color: var(--wine);
   margin-bottom: 0.3rem;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 .envelope__note {
   font-size: clamp(1.05rem, 3.6vw, 1.3rem);
   line-height: 1.5;
-  color: #fff;
+  color: var(--ink);
 }
 .envelope__from {
   display: block;
   margin-top: 0.7rem;
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--rose-gold);
 }
 
 .envelope__front {
@@ -171,7 +200,10 @@
   background: linear-gradient(180deg, #8a2a45, #5d1730);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
-  transition: transform 0.95s var(--ease-soft), z-index 0s linear 0.4s;
+  /* Swings open right after the seal breaks, then drops behind the letter. */
+  transition:
+    transform 0.7s var(--ease-soft) 0.15s,
+    z-index 0s linear 0.6s;
   z-index: 5;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -195,8 +227,13 @@
   color: #ffe8de;
   background: radial-gradient(circle at 35% 30%, #b9556b, #7a2138 60%, #4a0e22);
   border: 2px solid rgba(236, 211, 166, 0.75);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 0 12px rgba(0, 0, 0, 0.35);
-  transition: opacity 0.5s ease, transform 0.5s var(--ease-soft);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.45),
+    inset 0 0 12px rgba(0, 0, 0, 0.35);
+  /* Breaks first, then the flap swings and the letter slides out. */
+  transition:
+    opacity 0.4s ease 0.05s,
+    transform 0.4s var(--ease-soft) 0.05s;
 }
 .envelope.is-open .envelope__seal {
   opacity: 0;

@@ -23,8 +23,8 @@ export default function FinalScene({ onReplay }) {
               src={final.photo}
               alt="Us"
               loading="lazy"
-              onError={(e) => {
-                e.currentTarget.closest('.finale__photo-frame')?.classList.add('is-missing'); console.warn('final photo failed')
+              onError={e => {
+                e.currentTarget.closest('.finale__photo-frame')?.classList.add('is-missing')
               }}
             />
             <span className="finale__photo-glow" aria-hidden="true" />
@@ -62,7 +62,8 @@ export default function FinalScene({ onReplay }) {
         </Reveal>
 
         <p className="finale__made muted no-print">
-          <Heart size={13} aria-hidden="true" /> Made with far too much love, and a lot of late nights.
+          <Heart size={13} aria-hidden="true" /> Made with far too much love, and a lot of late
+          nights.
         </p>
       </div>
     </section>

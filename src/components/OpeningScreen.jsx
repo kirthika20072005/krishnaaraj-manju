@@ -36,13 +36,17 @@ export default function OpeningScreen({ onEnter }) {
   const handleEnter = () => {
     setStage('leaving')
     timers.current.push(
-      setTimeout(() => {
-        onEnter?.()
-      }, reduced ? 0 : 900),
+      setTimeout(
+        () => {
+          onEnter?.()
+        },
+        reduced ? 0 : 900
+      )
     )
   }
 
   const isOpen = stage === 'open' || stage === 'leaving'
+  const envelopeOpen = stage !== 'closed'
 
   return (
     <div className={`opening ${stage === 'leaving' ? 'is-leaving' : ''}`}>
@@ -52,16 +56,18 @@ export default function OpeningScreen({ onEnter }) {
       <div className="opening__glow" aria-hidden="true" />
 
       <div className="opening__content">
-        <p className="eyebrow opening__eyebrow">A little universe, for {site.hisNickname}</p>
-
         {!isOpen && (
-          <div className="opening__intro">
-            <h1 className="title-lg opening__line1">{site.opening.line1}</h1>
-            <p className="serif-lead opening__line2">{site.opening.line2}</p>
-          </div>
+          <>
+            <p className="eyebrow opening__eyebrow">A little universe, for {site.hisNickname}</p>
+
+            <div className="opening__intro">
+              <h1 className="title-lg opening__line1">{site.opening.line1}</h1>
+              <p className="serif-lead opening__line2">{site.opening.line2}</p>
+            </div>
+          </>
         )}
 
-        <div className={`envelope ${isOpen ? 'is-open' : ''}`}>
+        <div className={`envelope ${envelopeOpen ? 'is-open' : ''}`}>
           <div className="envelope__back" aria-hidden="true" />
           <div className="envelope__letter">
             <div className="envelope__letter-inner paper-tex">
@@ -78,7 +84,7 @@ export default function OpeningScreen({ onEnter }) {
             className="envelope__front"
             onClick={handleOpen}
             aria-label="Open the envelope"
-            tabIndex={isOpen ? -1 : 0}
+            tabIndex={envelopeOpen ? -1 : 0}
           />
           <div className="envelope__flap" aria-hidden="true" />
           <div className="envelope__seal" aria-hidden="true">
@@ -104,9 +110,7 @@ export default function OpeningScreen({ onEnter }) {
         )}
       </div>
 
-      <p className="opening__footer muted">
-        Made by hand, just for you.
-      </p>
+      <p className="opening__footer muted">Made by hand, just for you.</p>
     </div>
   )
 }

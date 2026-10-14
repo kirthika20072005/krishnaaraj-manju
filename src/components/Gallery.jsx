@@ -12,17 +12,17 @@ export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
   const items = useMemo(
-    () => (filter === 'all' ? gallery : gallery.filter((p) => p.category === filter)),
-    [filter],
+    () => (filter === 'all' ? gallery : gallery.filter(p => p.category === filter)),
+    [filter]
   )
 
-  const openAt = (id) => {
-    const idx = items.findIndex((p) => p === id)
+  const openAt = id => {
+    const idx = items.findIndex(p => p === id)
     setLightboxIndex(idx)
   }
 
-  const navigate = (dir) => {
-    setLightboxIndex((cur) => {
+  const navigate = dir => {
+    setLightboxIndex(cur => {
       if (cur === null) return cur
       const next = (cur + dir + items.length) % items.length
       return next
@@ -48,7 +48,7 @@ export default function Gallery() {
           >
             All
           </button>
-          {site.galleryCategories.map((c) => (
+          {site.galleryCategories.map(c => (
             <button
               key={c.id}
               type="button"
@@ -66,6 +66,7 @@ export default function Gallery() {
           {items.map((photo, i) => (
             <Reveal
               key={`${photo.src}-${i}`}
+              variant="pop"
               delay={(i % 6) * 0.05}
               className="polaroid-wrap"
               style={{ '--tilt': `${photo.tilt ?? 0}deg` }}
@@ -97,8 +98,8 @@ export default function Gallery() {
 
         <Reveal className="gallery__note center">
           <p className="muted">
-            <Camera size={15} aria-hidden="true" /> {items.length} little moments here — and room for
-            so many more.
+            <Camera size={15} aria-hidden="true" /> {items.length} little moments here — and room
+            for so many more.
           </p>
         </Reveal>
       </div>

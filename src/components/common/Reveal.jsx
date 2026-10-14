@@ -2,7 +2,8 @@ import useReveal from '../../hooks/useReveal.js'
 
 /**
  * Wraps children in a scroll-reveal container.
- * variant: 'up' | 'left' | 'right'
+ * variant: 'up' | 'left' | 'right' | 'pop'
+ * 'pop' scales cards up from 0.7 with a quick fade as they scroll into view.
  */
 export default function Reveal({
   children,
@@ -14,7 +15,14 @@ export default function Reveal({
   ...rest
 }) {
   const [ref, visible] = useReveal()
-  const variantClass = variant === 'left' ? 'reveal-left' : variant === 'right' ? 'reveal-right' : ''
+  const variantClass =
+    variant === 'left'
+      ? 'reveal-left'
+      : variant === 'right'
+        ? 'reveal-right'
+        : variant === 'pop'
+          ? 'reveal-pop'
+          : ''
 
   return (
     <Tag

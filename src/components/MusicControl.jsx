@@ -7,12 +7,19 @@ import './MusicControl.css'
  * Optional background music. NEVER autoplays — the visitor presses play.
  * If the audio file is missing, the control quietly hides itself.
  */
+function resolveMedia(p) {
+  if (!p) return null
+  if (/^https?:\/\//i.test(p) || p.startsWith('blob:') || p.startsWith('data:')) return p
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base}${String(p).replace(/^\//, '')}`
+}
+
 export default function MusicControl() {
   const audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [available, setAvailable] = useState(true)
 
-  const src = site?.music?.src
+  const src = resolveMedia(site?.music?.src)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -61,9 +68,7 @@ export default function MusicControl() {
         <span className="music-control__ring" aria-hidden="true" />
         {playing ? <Music2 size={18} /> : <VolumeX size={18} />}
       </button>
-      <span className="music-control__label">
-        {playing ? 'Now playing' : 'Play our song'}
-      </span>
+      <span className="music-control__label">{playing ? 'Now playing' : 'Play our song'}</span>
     </div>
   )
 }

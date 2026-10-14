@@ -24,3 +24,5 @@ npm-debug.log*
 # public/media/images/ours
 # public/media/video/*
 # public/media/music/*
+
+# Playwright MCP traces

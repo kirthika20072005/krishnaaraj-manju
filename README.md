@@ -82,12 +82,11 @@ The site ships with **placeholder artwork only** — no real photos, and no musi
 or video files (so nothing autoplays or feels forced). Swap them for your own:
 
 **Photos** — the gallery points at
-`public/media/images/ours/photo-01.svg` … `photo-20.svg`.
-Replace these with your own images, then update the `src` paths in
-`src/config/gallery.js`. Easiest path: drop your photos in the same folder and
-either keep the `.svg` filenames or change the extension in `gallery.js` (for
-example `photo-01.jpg`). The finale photo is
-`public/media/images/ours/final-us.svg` (set in `site.js` → `final.photo`).
+`public/media/images/ours/photo-01.jpg` … `photo-20.jpg`.
+Replace these files with your own images keeping the same names, or update the
+`src` paths in `src/config/gallery.js` (for example `photo-01.jpg` →
+`beach-day.jpg`). The finale photo is `public/media/images/ours/photo-19.jpg`
+(set in `site.js` → `final.photo`).
 
 **Video** — put your edited clip at `public/media/video/our-movie.mp4` and a
 poster at `public/media/video/our-movie-poster.jpg`. If the file is missing, the

@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from 'react'
  * Attach the returned ref to an element and add the `reveal` class in CSS.
  * The element gets `is-visible` when it scrolls into view (once).
  */
-export function useReveal(options = {}) {
+export function useReveal({
+  threshold = 0.15,
+  rootMargin = '0px 0px -60px 0px',
+  root = null,
+} = {}) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
 
@@ -17,19 +21,19 @@ export function useReveal(options = {}) {
       return
     }
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setVisible(true)
             observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px', ...options },
+      { threshold, rootMargin, root }
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [options])
+  }, [threshold, rootMargin, root])
 
   return [ref, visible]
 }
